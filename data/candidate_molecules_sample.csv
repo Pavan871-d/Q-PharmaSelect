@@ -1,0 +1,26 @@
+compound_id,name,smiles,cost,availability
+QPS-001,Erlotinib,COc1cc2c(ncnc2cc1OC)Nc3cccc(c3)C#C,380.0,AVAILABLE
+QPS-002,Gefitinib,COc1cc2c(ncnc2cc1OCCCN3CCOCC3)Nc4ccc(c(c4)Cl)F,420.0,AVAILABLE
+QPS-003,Lapatinib,CS(=O)(=O)CCNCc1ccc(o1)c2ccc3c(c2)c(c4cc(c(cc4)Cl)OCc5cccc(c5)F)ncn3,650.0,AVAILABLE
+QPS-004,Afatinib,CN(C)C/C=C/C(=O)Nc1cc2c(ncnc2cc1O[C@H]3CCOC3)Nc4ccc(c(c4)Cl)F,720.0,AVAILABLE
+QPS-005,Dacomitinib,COc1cc2c(ncnc2cc1NC(=O)/C=C/CN3CCCCC3)Nc4ccc(c(c4)Cl)F,590.0,AVAILABLE
+QPS-006,Vandetanib,COc1cc2c(ncnc2cc1OCC3CCN(CC3)C)Nc4ccc(c(c4)Br)F,510.0,AVAILABLE
+QPS-007,Canertinib,C=CC(=O)Nc1cc2c(ncnc2cc1OCCCN3CCOCC3)Nc4ccc(c(c4)Cl)F,480.0,AVAILABLE
+QPS-008,Quinazoline Analog 1,COc1cc2c(ncnc2cc1OC)Nc3cccc(c3)Br,310.0,AVAILABLE
+QPS-009,Quinazoline Analog 2,COc1cc2c(ncnc2cc1OC)Nc3cccc(c3)Cl,290.0,AVAILABLE
+QPS-010,Quinazoline Analog 3,COc1cc2c(ncnc2cc1OC)Nc3ccc(F)cc3,330.0,AVAILABLE
+QPS-011,Quinazoline Dimethoxy,COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OC,350.0,AVAILABLE
+QPS-012,Quinazoline Morpholine,Clc1ccc(Nc2ncnc3cc(OCCCN4CCOCC4)c(OC)cc23)cc1F,410.0,AVAILABLE
+QPS-013,Quinazoline Ethoxy,CCOc1cc2c(ncnc2cc1OCC)Nc3cccc(c3)C#C,460.0,AVAILABLE
+QPS-014,Quinazoline Piperidine,COc1cc2c(ncnc2cc1OCCN3CCCCC3)Nc4cccc(c4)C#C,520.0,AVAILABLE
+QPS-015,Quinazoline Methyl,Cc1cccc(Nc2ncnc3cc(OC)c(OC)cc23)c1,270.0,AVAILABLE
+QPS-016,Osimertinib,COc1cc(N(C)CCN(C)C)c(NC(=O)C=C)cc1Nc2nccc(n2)c3cn(C)c4ccccc34,850.0,AVAILABLE
+QPS-017,Brigatinib,COc1cc(Nc2ncc(Cl)c(Nc3ccccc3P(=O)(C)C)n2)ccc1N4CCN(C)CC4,780.0,AVAILABLE
+QPS-018,Nazartinib (EGF816),C=CC(=O)N1CC[C@@H](C1)Nc2ncc(c(n2)c3cc(c(F)c(c3)Cl)OC)Nc4ccc5c(c4)n(C)c(=O)n5C,920.0,AVAILABLE
+QPS-019,Olmutinib,C=CC(=O)Nc1cc(Nc2nccc(n2)Sc3ccccc3)c(cc1OC)N4CCN(C)CC4,810.0,AVAILABLE
+QPS-020,Almonertinib,COc1cc(N(C)CCN(C)C)c(NC(=O)C=C)cc1Nc2nccc(n2)c3cn(C4CC4)c5ccccc35,890.0,AVAILABLE
+QPS-021,Rociletinib,C=CC(=O)N1CCN(CC1)c2ccc(Nc3ncc(c(n3)c4cn(c5ccccc45)C(C)C)C(F)(F)F)cc2OC,840.0,AVAILABLE
+QPS-022,Pyrimidinediamine Lead A,CN1CCN(CC1)c2ccc(Nc3ncc(F)c(Nc4cccc(c4)S(=O)(=O)N)n3)c(c2)OC,620.0,AVAILABLE
+QPS-023,Pyrimidinediamine Lead B,COc1cc(Nc2ncc(Cl)c(Nc3cccc(c3)C(=O)NC)n2)ccc1N4CCN(CC4)C,610.0,AVAILABLE
+QPS-024,Indole-Pyrimidine Hybrid,CN(C)c1ccc(Nc2ncc(c(n2)c3c[nH]c4ccccc34)Cl)cc1,540.0,AVAILABLE
+QPS-025,Indole-Pyrimidine Fluoro,Fc1ccc(Nc2ncc(c(n2)c3c[nH]c4ccccc34)F)cc1,490.0,AVAILABLE

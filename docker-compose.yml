@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qpharmaselect_api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - DATABASE_URL=sqlite:///./qpharmaselect.db
+      - QPIAI_QCLOUD_API_KEY=${QPIAI_QCLOUD_API_KEY:-}
+      - QPIAI_OPT_API_KEY=${QPIAI_OPT_API_KEY:-}
+      - QPIAI_OPT_URL=${QPIAI_OPT_URL:-https://opt.qpiai.tech}
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    restart: unless-stopped
+
