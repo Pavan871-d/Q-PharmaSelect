@@ -10,13 +10,26 @@ from pydantic import BaseModel, Field
 
 # Base directories
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-DATA_DIR = BASE_DIR.parent / "data"
-REPORTS_DIR = BASE_DIR.parent / "reports"
-EXPERIMENTS_DIR = BASE_DIR.parent / "experiments"
+ROOT_DIR = BASE_DIR.parent
+DATA_DIR = ROOT_DIR / "data"
+REPORTS_DIR = ROOT_DIR / "reports"
+EXPERIMENTS_DIR = ROOT_DIR / "experiments"
 
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 EXPERIMENTS_DIR.mkdir(parents=True, exist_ok=True)
+
+# Automatically load environment variables from .env
+env_file = ROOT_DIR / ".env"
+if env_file.exists():
+    with open(env_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                k = k.strip()
+                v = v.strip().strip('"').strip("'")
+                os.environ[k] = v
 
 
 class Settings(BaseModel):
