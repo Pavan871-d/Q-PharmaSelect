@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Target, DollarSign, Layers, CheckCircle2, Sliders, ShieldCheck } from 'lucide-react';
 import { EvidenceBadge } from '../components/EvidenceBadge';
+import { api } from '../services/api';
 
 interface TargetAssayProps {
   onNavigate: (tab: string) => void;
@@ -22,11 +23,63 @@ export const TargetAssayPage: React.FC<TargetAssayProps> = ({ onNavigate }) => {
   const [unknownPolicy, setUnknownPolicy] = useState('EXCLUDE');
   const [saved, setSaved] = useState(false);
 
+  useEffect(() => {
+    async function loadTargetAndAssay() {
+      try {
+        const [targets, assays] = await Promise.all([
+          api.getTargets(),
+          api.getAssays(),
+        ]);
+        if (targets && targets.length > 0) {
+          const t = targets[0];
+          if (t.target_id) setTargetId(t.target_id);
+          if (t.name) setTargetName(t.name);
+          if (t.organism) setOrganism(t.organism);
+          if (t.uniprot_id) setUniprot(t.uniprot_id);
+        }
+        if (assays && assays.length > 0) {
+          const a = assays[0];
+          if (a.assay_id) setAssayId(a.assay_id);
+          if (a.assay_name) setAssayName(a.assay_name);
+          if (a.assay_type) setAssayType(a.assay_type);
+          if (a.endpoint) setEndpoint(a.endpoint);
+          if (a.endpoint_unit) setEndpointUnit(a.endpoint_unit);
+          if (a.activity_threshold_value) setActivityThresholdNm(a.activity_threshold_value);
+        }
+      } catch (e) {
+        console.error('Failed to load target or assay:', e);
+      }
+    }
+    loadTargetAndAssay();
+  }, []);
+
   // Unit transformation calculation
   // pIC50 = 9 - log10(IC50_in_nM)
   const pic50Threshold = (9.0 - Math.log10(Math.max(activityThresholdNm, 0.01))).toFixed(2);
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    try {
+      await Promise.all([
+        api.saveTarget({
+          target_id: targetId,
+          name: targetName,
+          organism: organism,
+          uniprot_id: uniprot,
+        }),
+        api.saveAssay({
+          target_id: targetId,
+          assay_id: assayId,
+          assay_name: assayName,
+          assay_type: assayType,
+          endpoint: endpoint,
+          endpoint_unit: endpointUnit,
+          activity_threshold_value: activityThresholdNm,
+          activity_threshold_pic50: parseFloat(pic50Threshold),
+        }),
+      ]);
+    } catch (e) {
+      console.error('Save failed:', e);
+    }
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };

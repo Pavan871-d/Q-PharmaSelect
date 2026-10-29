@@ -17,6 +17,37 @@ export const api = {
     return res.json();
   },
 
+  // Targets & Assays
+  getTargets: async (): Promise<any[]> => {
+    const res = await fetch(`${API_BASE}/targets`);
+    if (!res.ok) return [];
+    return res.json();
+  },
+
+  getAssays: async (): Promise<any[]> => {
+    const res = await fetch(`${API_BASE}/targets/assays`);
+    if (!res.ok) return [];
+    return res.json();
+  },
+
+  saveTarget: async (data: any): Promise<any> => {
+    const res = await fetch(`${API_BASE}/targets`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  },
+
+  saveAssay: async (data: any): Promise<any> => {
+    const res = await fetch(`${API_BASE}/targets/assays`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  },
+
   // Data
   getDatasetSummary: async (): Promise<DatasetSummary> => {
     const res = await fetch(`${API_BASE}/data/summary`);

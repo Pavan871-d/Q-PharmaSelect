@@ -112,12 +112,12 @@ export const OverviewDashboard: React.FC<OverviewProps> = ({ onNavigate }) => {
             <FlaskConical className="w-4 h-4 text-teal-400" />
           </div>
           <div className="mt-2 flex items-baseline space-x-2">
-            <span className="text-3xl font-bold text-white">{summary?.total_compounds ?? 80}</span>
+            <span className="text-3xl font-bold text-white">{summary ? summary.total_compounds : '—'}</span>
             <span className="text-xs text-slate-400">molecules</span>
           </div>
           <div className="mt-3 flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
             <span>Unique Scaffolds:</span>
-            <span className="font-medium text-slate-200">{summary?.total_scaffolds ?? 22}</span>
+            <span className="font-medium text-slate-200">{summary ? summary.total_scaffolds : '—'}</span>
           </div>
         </div>
 
@@ -128,12 +128,12 @@ export const OverviewDashboard: React.FC<OverviewProps> = ({ onNavigate }) => {
             <Brain className="w-4 h-4 text-sky-400" />
           </div>
           <div className="mt-2 flex items-baseline space-x-2">
-            <span className="text-3xl font-bold text-white">{model?.r2 ? model.r2.toFixed(2) : '0.73'}</span>
-            <span className="text-xs text-slate-400">R&sup2; Score</span>
+            <span className="text-3xl font-bold text-white">{model?.r2 !== undefined ? model.r2.toFixed(3) : 'Pending Train'}</span>
+            {model?.r2 !== undefined && <span className="text-xs text-slate-400">R&sup2; Score</span>}
           </div>
           <div className="mt-3 flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
-            <span>RMSE: <strong className="text-slate-200">{model?.rmse ? model.rmse.toFixed(2) : '0.81'}</strong></span>
-            <span>Spearman: <strong className="text-slate-200">{model?.spearman_corr ? model.spearman_corr.toFixed(2) : '0.85'}</strong></span>
+            <span>RMSE: <strong className="text-slate-200">{model?.rmse !== undefined ? model.rmse.toFixed(3) : '—'}</strong></span>
+            <span>Spearman: <strong className="text-slate-200">{model?.spearman_corr !== undefined ? model.spearman_corr.toFixed(3) : '—'}</strong></span>
           </div>
         </div>
 
@@ -147,11 +147,13 @@ export const OverviewDashboard: React.FC<OverviewProps> = ({ onNavigate }) => {
             <span className="text-3xl font-bold text-violet-300">
               {quantum?.num_qubits ?? 4}
             </span>
-            <span className="text-xs text-slate-400">Qubits ({quantum?.num_shots ?? 1024} shots)</span>
+            <span className="text-xs text-slate-400">Qubits ({quantum?.num_shots ?? 256} shots)</span>
           </div>
           <div className="mt-3 flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
             <span>Hybrid RMSE:</span>
-            <span className="font-medium text-violet-300">{quantum?.quantum_hybrid_rmse ?? '0.731'}</span>
+            <span className="font-medium text-violet-300">
+              {quantum?.quantum_hybrid_rmse !== undefined ? quantum.quantum_hybrid_rmse.toFixed(3) : 'Pending Run'}
+            </span>
           </div>
         </div>
 
@@ -163,13 +165,15 @@ export const OverviewDashboard: React.FC<OverviewProps> = ({ onNavigate }) => {
           </div>
           <div className="mt-2 flex items-baseline space-x-2">
             <span className="text-3xl font-bold text-emerald-400">
-              {val?.selected_batch_enrichment_factor ? `${val.selected_batch_enrichment_factor.toFixed(2)}x` : '1.85x'}
+              {val?.selected_batch_enrichment_factor !== undefined ? `${val.selected_batch_enrichment_factor.toFixed(2)}x` : 'Pending Run'}
             </span>
-            <span className="text-xs text-slate-400">over random</span>
+            {val?.selected_batch_enrichment_factor !== undefined && <span className="text-xs text-slate-400">over random</span>}
           </div>
           <div className="mt-3 flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
             <span>Novel Scaffolds:</span>
-            <span className="font-medium text-emerald-300">{val?.selected_batch_novel_scaffolds ?? 12}</span>
+            <span className="font-medium text-emerald-300">
+              {val?.selected_batch_novel_scaffolds !== undefined ? val.selected_batch_novel_scaffolds : '—'}
+            </span>
           </div>
         </div>
       </div>

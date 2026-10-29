@@ -60,7 +60,7 @@ export interface QuantumRunResult {
   backend_name: string;
   status: string;
   sdk_version: string;
-  num_qubits: int;
+  num_qubits: number;
   circuit_depth: number;
   num_shots: number;
   execution_time_ms: number;
